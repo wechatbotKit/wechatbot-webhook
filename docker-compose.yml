@@ -1,0 +1,17 @@
+version: "3.3"
+
+services:
+    wechat-box:
+        image: "dannicool/wechat-box:test"
+        restart: unless-stopped
+        container_name: "wechat-box"
+        environment:
+            WC_AUTO_RESTART: "yes"
+        ports:
+            - "3001:3001"
+            - "8080:8080"
+        volumes:
+            - "/home/daniel/.wechat/WeChat Files/:/home/app/WeChat Files/"
+            - "/home/daniel/.wechat/Applcation Data/:/home/app/.wine/drive_c/users/user/Application Data/"
+            - "/home/daniel/external:/home/app/external"
+        tty: true
