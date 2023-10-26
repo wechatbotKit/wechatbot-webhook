@@ -19,12 +19,14 @@
 4. docker-compose up -d
 
 ## 现有问题
-
-- [x] <del>wine 可以跑 windows 微信，但是 dll 注入环节，wechaty-puppet-xp 的 frida 模块找不到 process，需要兼容</del>
+- [x] <del>docker 基础镜像选择编写 </del>
+- [x] <del>解决 wine 环境Windows 版本 Node 无法运行的问题，以及 wechaty-puppet-xp 的 frida 模块找不到 Process的问题</del>
+- [x] <del>解决 wine 环境下frida attach进程和node代码联动问题</del>
 - [ ] 解决远程attach后消息收发（文件、图片）无反应
-  - [x] 解决无法发送文件url
+  - [x] <del>解决无法发送文件url</dev>
   - [ ] 解决无法发送本地文件(formData发送）
   - [ ] 解决无法接受文件
+- [ ] docker 镜像优化
 
 ## Credit
 
