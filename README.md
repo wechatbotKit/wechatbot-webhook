@@ -22,6 +22,9 @@
 
 - [x] <del>wine 可以跑 windows 微信，但是 dll 注入环节，wechaty-puppet-xp 的 frida 模块找不到 process，需要兼容</del>
 - [ ] 解决远程attach后消息收发（文件、图片）无反应
+  - [x] 解决无法发送文件url
+  - [ ] 解决无法发送本地文件(formData发送）
+  - [ ] 解决无法接受文件
 
 ## Credit
 
