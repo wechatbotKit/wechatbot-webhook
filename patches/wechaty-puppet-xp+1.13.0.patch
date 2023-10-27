@@ -1,0 +1,242 @@
+diff --git a/node_modules/wechaty-puppet-xp/dist/cjs/src/init-agent-script.js b/node_modules/wechaty-puppet-xp/dist/cjs/src/init-agent-script.js
+index 802ce45..59cc4f9 100644
+--- a/node_modules/wechaty-puppet-xp/dist/cjs/src/init-agent-script.js
++++ b/node_modules/wechaty-puppet-xp/dist/cjs/src/init-agent-script.js
+@@ -61,8 +61,8 @@ const moduleLoad = Module.load('WeChatWin.dll')
+ 
+ /*---------------base -------------------------*/
+ 
+-let retidPtr=null
+-let retidStruct=null
++let retidPtr = null
++let retidStruct = null
+ const initidStruct = ((str) => {
+ 
+   retidPtr = Memory.alloc(str.length * 2 + 1)
+@@ -99,8 +99,8 @@ const initStruct = ((str) => {
+   return retStruct
+ })
+ 
+-let msgstrPtr=null
+-let msgStruct=null
++let msgstrPtr = null
++let msgStruct = null
+ const initmsgStruct = ((str) => {
+   msgstrPtr = Memory.alloc(str.length * 2 + 1)
+   msgstrPtr.writeUtf16String(str)
+@@ -239,88 +239,88 @@ const checkSupportedFunction = (() => {
+ const recvMsgNativeCallback = (() => {
+ 
+ 
+-  const nativeCallback = new NativeCallback(() => {}, 'void', ['int32', 'pointer', 'pointer', 'pointer', 'pointer', 'int32'])
++  const nativeCallback = new NativeCallback(() => { }, 'void', ['int32', 'pointer', 'pointer', 'pointer', 'pointer', 'int32'])
+   const nativeativeFunction = new NativeFunction(nativeCallback, 'void', ['int32', 'pointer', 'pointer', 'pointer', 'pointer', 'int32'])
+ 
+   Interceptor.attach(
+     moduleBaseAddress.add(offset.hook_point), {
+-      onEnter() {
+-        const addr = this.context.ecx //0xc30-0x08
+-        const msgType = addr.add(0x38).readU32()
+-        const isMyMsg = addr.add(0x3C).readU32() //add isMyMsg
+-
+-        if (msgType > 0) {
+-
+-          const talkerIdPtr = addr.add(0x48).readPointer()
+-          //console.log('txt msg',talkerIdPtr.readUtf16String())
+-          const talkerIdLen = addr.add(0x48 + 0x04).readU32() * 2 + 2
+-
+-          const myTalkerIdPtr = Memory.alloc(talkerIdLen)
+-          Memory.copy(myTalkerIdPtr, talkerIdPtr, talkerIdLen)
+-
+-
+-          let contentPtr = null
+-          let contentLen = 0
+-          let myContentPtr = null
+-          if (msgType == 3) { // pic path
+-            let thumbPtr = addr.add(0x198).readPointer();
+-            let hdPtr = addr.add(0x1ac).readPointer();
+-            let thumbPath = thumbPtr.readUtf16String();
+-            let hdPath = hdPtr.readUtf16String();
+-            let picData = [
+-              thumbPath, //  PUPPET.types.Image.Unknown
+-              thumbPath, //  PUPPET.types.Image.Thumbnail
+-              hdPath, //  PUPPET.types.Image.HD
+-              hdPath //  PUPPET.types.Image.Artwork
+-            ]
+-            let content = JSON.stringify(picData);
+-            myContentPtr = Memory.allocUtf16String(content);
+-          } else {
+-            contentPtr = addr.add(0x70).readPointer()
+-            contentLen = addr.add(0x70 + 0x04).readU32() * 2 + 2
+-            myContentPtr = Memory.alloc(contentLen)
+-            Memory.copy(myContentPtr, contentPtr, contentLen)
+-          }
+-
+-          //  console.log('----------------------------------------')
+-          //  console.log(msgType)
+-          //  console.log(contentPtr.readUtf16String())
+-          //  console.log('----------------------------------------')
+-          const groupMsgAddr = addr.add(0x170).readU32() //* 2 + 2
+-          let myGroupMsgSenderIdPtr = null
+-          if (groupMsgAddr == 0) { //weChatPublic is zero，type is 49
+-
+-            myGroupMsgSenderIdPtr = Memory.alloc(0x10)
+-            myGroupMsgSenderIdPtr.writeUtf16String("null")
+-
+-          } else {
+-
+-            const groupMsgSenderIdPtr = addr.add(0x170).readPointer()
+-            const groupMsgSenderIdLen = addr.add(0x170 + 0x04).readU32() * 2 + 2
+-            myGroupMsgSenderIdPtr = Memory.alloc(groupMsgSenderIdLen)
+-            Memory.copy(myGroupMsgSenderIdPtr, groupMsgSenderIdPtr, groupMsgSenderIdLen)
+-
+-          }
+-
+-          const xmlNullPtr = addr.add(0x1f0).readU32() //3.9.2.23
+-          let myXmlContentPtr = null
+-          if (xmlNullPtr == 0) {
+-
+-            myXmlContentPtr = Memory.alloc(0x10)
+-            myXmlContentPtr.writeUtf16String("null")
+-
+-          } else {
+-            const xmlContentPtr = addr.add(0x1f0).readPointer() //3.9.2.23
+-
+-            const xmlContentLen = addr.add(0x1f0 + 0x04).readU32() * 2 + 2
+-            myXmlContentPtr = Memory.alloc(xmlContentLen)
+-            Memory.copy(myXmlContentPtr, xmlContentPtr, xmlContentLen)
+-          }
+-
+-          setImmediate(() => nativeativeFunction(msgType, myTalkerIdPtr, myContentPtr, myGroupMsgSenderIdPtr, myXmlContentPtr, isMyMsg))
++    onEnter() {
++      const addr = this.context.ecx //0xc30-0x08
++      const msgType = addr.add(0x38).readU32()
++      const isMyMsg = addr.add(0x3C).readU32() //add isMyMsg
++
++      if (msgType > 0) {
++
++        const talkerIdPtr = addr.add(0x48).readPointer()
++        //console.log('txt msg',talkerIdPtr.readUtf16String())
++        const talkerIdLen = addr.add(0x48 + 0x04).readU32() * 2 + 2
++
++        const myTalkerIdPtr = Memory.alloc(talkerIdLen)
++        Memory.copy(myTalkerIdPtr, talkerIdPtr, talkerIdLen)
++
++
++        let contentPtr = null
++        let contentLen = 0
++        let myContentPtr = null
++        if (msgType == 3) { // pic path
++          let thumbPtr = addr.add(0x198).readPointer();
++          let hdPtr = addr.add(0x1ac).readPointer();
++          let thumbPath = thumbPtr.readUtf16String();
++          let hdPath = hdPtr.readUtf16String();
++          let picData = [
++            thumbPath, //  PUPPET.types.Image.Unknown
++            thumbPath, //  PUPPET.types.Image.Thumbnail
++            hdPath, //  PUPPET.types.Image.HD
++            hdPath //  PUPPET.types.Image.Artwork
++          ]
++          let content = JSON.stringify(picData);
++          myContentPtr = Memory.allocUtf16String(content);
++        } else {
++          contentPtr = addr.add(0x70).readPointer()
++          contentLen = addr.add(0x70 + 0x04).readU32() * 2 + 2
++          myContentPtr = Memory.alloc(contentLen)
++          Memory.copy(myContentPtr, contentPtr, contentLen)
+         }
++
++        //  console.log('----------------------------------------')
++        //  console.log(msgType)
++        //  console.log(contentPtr.readUtf16String())
++        //  console.log('----------------------------------------')
++        const groupMsgAddr = addr.add(0x170).readU32() //* 2 + 2
++        let myGroupMsgSenderIdPtr = null
++        if (groupMsgAddr == 0) { //weChatPublic is zero，type is 49
++
++          myGroupMsgSenderIdPtr = Memory.alloc(0x10)
++          myGroupMsgSenderIdPtr.writeUtf16String("null")
++
++        } else {
++
++          const groupMsgSenderIdPtr = addr.add(0x170).readPointer()
++          const groupMsgSenderIdLen = addr.add(0x170 + 0x04).readU32() * 2 + 2
++          myGroupMsgSenderIdPtr = Memory.alloc(groupMsgSenderIdLen)
++          Memory.copy(myGroupMsgSenderIdPtr, groupMsgSenderIdPtr, groupMsgSenderIdLen)
++
++        }
++
++        const xmlNullPtr = addr.add(0x1f0).readU32() //3.9.2.23
++        let myXmlContentPtr = null
++        if (xmlNullPtr == 0) {
++
++          myXmlContentPtr = Memory.alloc(0x10)
++          myXmlContentPtr.writeUtf16String("null")
++
++        } else {
++          const xmlContentPtr = addr.add(0x1f0).readPointer() //3.9.2.23
++
++          const xmlContentLen = addr.add(0x1f0 + 0x04).readU32() * 2 + 2
++          myXmlContentPtr = Memory.alloc(xmlContentLen)
++          Memory.copy(myXmlContentPtr, xmlContentPtr, xmlContentLen)
++        }
++
++        setImmediate(() => nativeativeFunction(msgType, myTalkerIdPtr, myContentPtr, myGroupMsgSenderIdPtr, myXmlContentPtr, isMyMsg))
+       }
+-    })
++    }
++  })
+   return nativeCallback
+ })()
+ 
+@@ -620,12 +620,12 @@ const sendMsgNativeFunction = ((talkerId, content) => {
+ let asmAtMsg = null
+ let roomid_, msg_, wxid_, atid_
+ let ecxBuffer
+-const sendAtMsgNativeFunction = ((roomId, text, contactId,nickname) => {
++const sendAtMsgNativeFunction = ((roomId, text, contactId, nickname) => {
+ 
+   asmAtMsg = Memory.alloc(Process.pageSize)
+   ecxBuffer = Memory.alloc(0x3b0)
+ 
+-  const atContent = '@'+nickname+' '+text
++  const atContent = '@' + nickname + ' ' + text
+ 
+   roomid_ = initStruct(roomId)
+   wxid_ = initidStruct(contactId)
+@@ -679,6 +679,8 @@ const sendAtMsgNativeFunction = ((roomId, text, contactId,nickname) => {
+  * @param {*} path 
+  */
+ const sendPicMsgNativeFunction = ((contactId, path) => {
++  //TODO:异步attach需要转换path
++  path = convertPath2WinPath(path)
+ 
+   const picAsm = Memory.alloc(Process.pageSize)
+   const buffwxid = Memory.alloc(0x20)
+@@ -803,3 +805,25 @@ const isLoggedInFunction = (() => {
+   // return !!loggedIn
+   return true
+ })
++
++
++/**
++ * frida 异步 attach 路径转化逻辑，本质还是得从windows路径读
++ * @param {*} type 
++ * @param {*} basePath linux路径相对于Windows的基准路径，默认wsl的Ubuntu路径
++ * @param {*} path 
++ * @returns 
++ */
++function convertPath2WinPath(basePath = "\\\\wsl.localhost\\Ubuntu", linuxPath) {
++  console.log('\nlinuxPath\n', linuxPath)
++
++  // 将 Linux 路径转换为 Windows 路径
++  const windowsPath = linuxPath.replace(/\//g, "\\")
++
++  // 构建完整的 Windows 路径
++  const fullWindowsPath = basePath + windowsPath;
++
++  console.log(`\nconvert file path from ${linuxPath} to ${fullWindowsPath}\n`);
++
++  return fullPath;
++}
+\ No newline at end of file

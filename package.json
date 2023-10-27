@@ -4,9 +4,11 @@
   "description": "给微信里加个 webhook 机器人，支持docker部署",
   "main": "index.js",
   "scripts": {
+    "postinstall": "patch-package",
     "prestart": "node ./scripts/preStart",
     "predebug": "node ./scripts/preStart",
     "start": "node main",
+    "startWin": "export WECHATY_PUPPET=wechaty-puppet-xp&&node main",
     "debug": "node --inspect='0.0.0.0:9229' main"
   },
   "author": {
@@ -28,5 +30,8 @@
     "node-fetch-commonjs": "^3.3.2",
     "wechaty": "^1.20.2",
     "wechaty-puppet-xp": "^1.13.0"
+  },
+  "devDependencies": {
+    "patch-package": "^8.0.0"
   }
 }
