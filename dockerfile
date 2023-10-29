@@ -18,11 +18,11 @@ RUN sudo apt-get update  \
 
 WORKDIR /node
 
-# 将 package.json 和 package-lock.json 复制到工作目录
-COPY package*.json ./
+# 非依赖变更缓存改层
+COPY package.json pnpm-lock.yaml ./
 
 # 安装应用程序依赖项
-RUN sudo npm install
+RUN npm install -g pnpm && pnpm install && pnpm store prune && npm uninstall pnpm -g
 
 # 复制应用程序代码到工作目录
 COPY . .

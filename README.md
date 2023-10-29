@@ -9,6 +9,8 @@
 
 ✅[Todo](https://github.com/danni-cool/docker-wechatbot-webhook/issues/11) & 💬[Discussion(Discord)](https://discord.gg/jRX5F2Km)
 
+> 项目基于web协议，已知登录几天会掉，需要重新登录。这是网页微信风控的问题。但是网页版相对轻量，仍然适合调试学习使用，有兴趣的可以关注windows分支
+
 </div>
 
 ## Windows 底层协议平替
