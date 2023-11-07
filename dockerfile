@@ -9,7 +9,7 @@ RUN bash -c 'nohup /entrypoint.sh 2>&1 &' && sleep 5 && /payloads.sh \
 
 # init node-18 https://deb.nodesource.com/
 RUN sudo apt-get update  \
-    && sudo apt-get install -y curl gnupg ca-certificates \
+    && sudo apt-get install -y curl xdotool gnupg ca-certificates \
     && sudo mkdir -p /etc/apt/keyrings/ \
     && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
     && echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_18.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list \
