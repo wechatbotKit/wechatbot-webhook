@@ -15,6 +15,42 @@
 
 ## Screenshot
 
+![](https://cdn.jsdelivr.net/gh/danni-cool/danni-cool@cdn/image/wine-wecaht-screenshot.png)
+
+## Install
+
+### 拉取镜像
+
+```bash
+docker pull dannicool/docker-wechatbot-webhook:windows
+
+docker run -d \
+--name wxBotWebhook \
+-p 8080:8080 \
+-p 8022:22 \
+dannicool/docker-wechatbot-webhook:windows
+```
+
+### 连接 noVnc
+
+网页打开 http://localhost:8080
+
+### 安装程序
+如 screenshot 所示双击安装
+
+### 关掉了如何启动
+
+1. 使用 ssh 服务启动
+
+```bash
+# 连接终端
+ssh docker@localhost -p 8022
+# 切换到docker用户
+su docker
+# 启动微信
+wechat-start
+```
+2. 在图形界面找到 My Computer > C:\Program Files\Tencent\WeChat\WeChat.exe 双击启动
 
 ## TODO
 see https://github.com/danni-cool/docker-wechatbot-webhook/issues/11
