@@ -56,16 +56,19 @@ RUN apt-get update && \
 
 # RUN /home/docker/install-wechat.sh
 # download wechat
-RUN wget -O /home/docker/WeChatSetup-3.9.2.23.exe https://github.com/tom-snow/wechat-windows-versions/releases/download/v3.9.2.23/WeChatSetup-3.9.2.23.exe
+RUN wget -O /home/docker/WeChatSetup-3.9.2.23.exe https://github.com/tom-snow/wechat-windows-versions/releases/download/v3.9.2.23/WeChatSetup-3.9.2.23.exe \
+  && touch /home/docker/start-wechat.sh \
+  && echo "#!/usr/bin/env bash"
 
-# Add entrypoint.sh
-COPY entrypoint.sh /etc/entrypoint.sh
+COPY linux/bin /bin
+
+COPY linux/.fluxbox /home/docker/
 
 # Add supervisor conf
-COPY conf.d/* /etc/supervisor/conf.d/
+COPY linux/conf.d/* /etc/supervisor/conf.d/
 
-# Add flubox menu
-COPY menu /home/docker/.fluxbox/
+# Add entrypoint.sh
+COPY linux/sh/entrypoint.sh /etc/entrypoint.sh
 
 ENTRYPOINT ["/bin/bash","/etc/entrypoint.sh"]
 # Expose Port
