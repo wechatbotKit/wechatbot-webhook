@@ -1,0 +1,6 @@
+[begin] (fluxbox)
+[submenu] (Wine) {}
+         [exec] (winecfg) {winecfg} <>
+[end]
+[include] (/etc/X11/fluxbox/fluxbox-menu)
+[end]
