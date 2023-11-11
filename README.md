@@ -17,6 +17,9 @@
 
 ![](https://cdn.jsdelivr.net/gh/danni-cool/danni-cool@cdn/image/wine-wecaht-screenshot.png)
 
+## Recognized Problem
+1. wine模拟图形界面 cpu 和 内存占用高 [Test Results of Running Wechat on WineHq](https://appdb.winehq.org/objectManager.php?sClass=version&iId=41375)
+
 ## Install
 
 ### 拉取镜像
@@ -45,12 +48,15 @@ dannicool/docker-wechatbot-webhook:windows
 ```bash
 # 连接终端
 ssh docker@localhost -p 8022
+# 输入密码
+1234
 # 切换到docker用户
 su docker
 # 启动微信
 wechat-start
 ```
 2. 在图形界面找到 My Computer > C:\Program Files\Tencent\WeChat\WeChat.exe 双击启动
+
 
 ## TODO
 see https://github.com/danni-cool/docker-wechatbot-webhook/issues/11
