@@ -15,7 +15,29 @@ ENV NOVNC_HOME=/usr/libexec/noVNCdim
 # Updating and upgrading a bit.
 # Install vnc, window manager and basic tools
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends language-pack-zh-hant x11vnc xdotool wget supervisor fluxbox git sudo && \
+    apt-get install -y --no-install-recommends \
+    language-pack-zh-hant \
+    x11vnc \
+    xdotool \
+    wget \ 
+    supervisor \ 
+    fluxbox \
+    git \ 
+    sudo \
+    apt-transport-https \
+    ca-certificates \
+    cabextract \
+    gnupg \
+    gpg-agent \
+    locales \
+    p7zip \
+    pulseaudio \
+    pulseaudio-utils \
+    tzdata \
+    unzip\ 
+    # Installation of winbind to stop ntlm error messages.
+    winbind \
+    zenity && \
     dpkg --add-architecture i386 && \
 # We need software-properties-common to add ppas.
     curl https://dl.winehq.org/wine-builds/winehq.key -o /tmp/Release.key && \
@@ -24,13 +46,11 @@ RUN apt-get update && \
     apt-add-repository 'https://dl.winehq.org/wine-builds/ubuntu/' && \
     add-apt-repository ppa:cybermax-dexter/sdl2-backport && \
     apt-get update && \
-    apt-get install -y --no-install-recommends winehq-stable && \
+    apt-get install -y --no-install-recommends winehq-staging && \
     apt-get install -y --no-install-recommends xvfb python3 && \
 # Install winetricks
     curl -SL -k https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks  -o /usr/local/bin/winetricks && \
     chmod a+x /usr/local/bin/winetricks  && \
-# Installation of winbind to stop ntlm error messages.
-    apt-get install -y --no-install-recommends winbind && \
 # Create user for ssh
     adduser \
             --home /home/docker \
@@ -54,15 +74,13 @@ RUN apt-get update && \
     rm -rf /home/wine/.cache && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# RUN /home/docker/install-wechat.sh
-# download wechat
-RUN wget -O /home/docker/WeChatSetup-3.9.2.23.exe https://github.com/tom-snow/wechat-windows-versions/releases/download/v3.9.2.23/WeChatSetup-3.9.2.23.exe \
-  && touch /home/docker/start-wechat.sh \
-  && echo "#!/usr/bin/env bash"
+# download wechat and fs
+RUN wget -O /home/docker/WeChatSetup-3.9.2.23.exe https://github.com/tom-snow/wechat-windows-versions/releases/download/v3.9.2.23/WeChatSetup-3.9.2.23.exe && \
+    wget -O /home/docker/fs.exe https://raw.githubusercontent.com/danni-cool/danni-cool/cdn/file/fs15.2.2x86.exe
 
 COPY linux/bin /bin
 
-COPY linux/.fluxbox /home/docker/
+COPY linux/.fluxbox /home/docker/.fluxbox
 
 # Add supervisor conf
 COPY linux/conf.d/* /etc/supervisor/conf.d/
@@ -70,6 +88,8 @@ COPY linux/conf.d/* /etc/supervisor/conf.d/
 # Add entrypoint.sh
 COPY linux/sh/entrypoint.sh /etc/entrypoint.sh
 
+
 ENTRYPOINT ["/bin/bash","/etc/entrypoint.sh"]
+
 # Expose Port
-EXPOSE 8080 22
+EXPOSE 8080 22 27042
