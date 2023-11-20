@@ -1,0 +1,8 @@
+{
+  "watch": ["src", "node_modules/wechaty-puppet-xp/dist/cjs/src/init-agent-script.js"],
+  "ext": "js,json",
+  "ignoreRoot": [".git"],
+  "execMap": {
+    "js": "node --harmony"
+  }
+}

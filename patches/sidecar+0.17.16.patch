@@ -10,7 +10,7 @@ index 9675785..8f18f0d 100644
 +                //TODO: 修改点1
 +                const deviceManager = frida.getDeviceManager();
 +                // const device = await deviceManager.addRemoteDevice('127.0.0.1:27042')
-+                const device = await deviceManager.addRemoteDevice('192.168.1.9:12345')
++                const device = await deviceManager.addRemoteDevice('192.168.1.9:27042')
 +                session = await device.attach(targetProcess);
                  config_js_1.log.silly('SidecarBody', '[ATTACH_SYMBOL]() frida.attach(%s) succeed: pid = %s', this.sidecarTarget.target, session.pid);
              }
@@ -23,7 +23,7 @@ index 9675785..8f18f0d 100644
 +                //TODO: 修改点2
 +                const deviceManager = frida.getDeviceManager();
 +                // const device = await deviceManager.addRemoteDevice('127.0.0.1:27042')
-+                const device = await deviceManager.addRemoteDevice('192.168.1.9:12345')
++                const device = await deviceManager.addRemoteDevice('192.168.1.9:27042')
 +                // session = await device.attach(targetProcess);
 +                session = await device.attach(pid);
                  resumeCallbackList.push(() => frida.resume(pid));

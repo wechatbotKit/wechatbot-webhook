@@ -7,6 +7,8 @@
     "postinstall": "patch-package",
     "prestart": "node ./scripts/preStart",
     "predebug": "node ./scripts/preStart",
+    "dev": "nodemon main",
+    "devWin": "export WECHATY_PUPPET=wechaty-puppet-xp &&nodemon main",
     "start": "node main",
     "startWin": "export WECHATY_PUPPET=wechaty-puppet-xp&&node main",
     "debug": "node --inspect='0.0.0.0:9229' main"
@@ -58,6 +60,7 @@
     "eslint-plugin-promise": "^6.0.0",
     "husky": "^8.0.3",
     "lint-staged": "^15.0.2",
+    "nodemon": "^3.0.1",
     "patch-package": "^8.0.0",
     "prettier": "^3.0.3"
   }
