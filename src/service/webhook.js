@@ -7,6 +7,7 @@ const {
   LOGIN_API_TOKEN,
   LOCAL_LOGIN_API_TOKEN,
 } = process.env
+// const isWinMode = require('../config/const')
 let fileTypeFromBuffer
 
 import('file-type').then((res) => {

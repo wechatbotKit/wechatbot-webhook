@@ -6,7 +6,7 @@
   "scripts": {
     "prestart": "node ./scripts/preStart",
     "predebug": "node ./scripts/preStart",
-    "start": "node main",
+    "start": "http_proxy=http://127.0.0.1:8888 https_proxy=http://127.0.0.1:8888 node main",
     "debug": "node --inspect='0.0.0.0:9229' main"
   },
   "engines": {

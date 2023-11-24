@@ -117,6 +117,7 @@ module.exports = function registerPushHook({ app, bot }) {
 
         if (msgReceiver) {
           const sendStatus = await Service.formatAndSendMsg({
+            isRoom,
             bot,
             type,
             content,

@@ -135,6 +135,18 @@ const parseJsonLikeStr = (jsonLikeStr) => {
   return JSON.parse(formatStr)
 }
 
+const uniqueByProperty = (array, propertyName) => {
+  const seen = new Map()
+  return array.filter((item) => {
+    const propValue = item[propertyName]
+    if (seen.has(propValue)) {
+      return false
+    }
+    seen.set(propValue, true)
+    return true
+  })
+}
+
 module.exports = {
   getFileNameFromUrl,
   getMediaFromUrl,
@@ -143,4 +155,5 @@ module.exports = {
   generateToken,
   equalTrueType,
   parseJsonLikeStr,
+  uniqueByProperty,
 }
