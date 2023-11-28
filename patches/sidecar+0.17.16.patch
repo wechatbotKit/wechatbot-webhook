@@ -1,5 +1,5 @@
 diff --git a/node_modules/sidecar/dist/cjs/src/sidecar-body/sidecar-body.js b/node_modules/sidecar/dist/cjs/src/sidecar-body/sidecar-body.js
-index 9675785..8f18f0d 100644
+index 9675785..0c7e886 100644
 --- a/node_modules/sidecar/dist/cjs/src/sidecar-body/sidecar-body.js
 +++ b/node_modules/sidecar/dist/cjs/src/sidecar-body/sidecar-body.js
 @@ -106,7 +106,11 @@ class SidecarBody extends sidecar_emitter_js_1.SidecarEmitter {
@@ -7,24 +7,23 @@ index 9675785..8f18f0d 100644
              const targetProcess = this.sidecarTarget.target;
              try {
 -                session = await frida.attach(targetProcess);
++                // session = await frida.attach(targetProcess);
 +                //TODO: 修改点1
-+                const deviceManager = frida.getDeviceManager();
-+                // const device = await deviceManager.addRemoteDevice('127.0.0.1:27042')
-+                const device = await deviceManager.addRemoteDevice('192.168.1.9:27042')
-+                session = await device.attach(targetProcess);
++                 const deviceManager = frida.getDeviceManager();
+++                const device = await deviceManager.addRemoteDevice('127.0.0.1:27042')
+++                session = await device.attach(targetProcess);
                  config_js_1.log.silly('SidecarBody', '[ATTACH_SYMBOL]() frida.attach(%s) succeed: pid = %s', this.sidecarTarget.target, session.pid);
              }
              catch (e) {
-@@ -126,7 +130,12 @@ class SidecarBody extends sidecar_emitter_js_1.SidecarEmitter {
+@@ -126,7 +130,11 @@ class SidecarBody extends sidecar_emitter_js_1.SidecarEmitter {
                   *  when we need to `frida.kill()` it within `detatch()`
                   */
                  this.spawnPid = pid;
 -                session = await frida.attach(pid);
++                // session = await frida.attach(pid);
 +                //TODO: 修改点2
 +                const deviceManager = frida.getDeviceManager();
-+                // const device = await deviceManager.addRemoteDevice('127.0.0.1:27042')
-+                const device = await deviceManager.addRemoteDevice('192.168.1.9:27042')
-+                // session = await device.attach(targetProcess);
++                const device = await deviceManager.addRemoteDevice('127.0.0.1:27042')
 +                session = await device.attach(pid);
                  resumeCallbackList.push(() => frida.resume(pid));
                  config_js_1.log.silly('SidecarBody', '[ATTACH_SYMBOL]() friday.spawn(%s, [%s]) succeed: pid = %s', command, args.join(','), pid);
