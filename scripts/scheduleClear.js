@@ -1,22 +1,21 @@
 const chokidar = require('chokidar');
 const fs = require('fs');
-const path = require('path')
+const path = require('path');
+
 const directoryPath = 'tmp'; // 要监控的目录路径
 const fileExpireTime = 1000 * 60 * 10; // 临时文件都缓存10分钟
 
 // 指定要保留的文件列表
 const filesToKeep = ['sending_file_will_downloaded_here'];
 
-// 重新启动时清空文件
+// 在启动时清空目录
 fs.readdir(directoryPath, (err, files) => {
   if (err) {
     console.error("无法读取文件夹: ", err);
     return;
   }
 
-  // 遍历文件夹中的每个文件
   files.forEach(file => {
-    // 如果文件不在保留列表中，则删除
     if (!filesToKeep.includes(file)) {
       fs.unlink(path.join(directoryPath, file), err => {
         if (err) {
@@ -35,18 +34,27 @@ const watcher = chokidar.watch(directoryPath, {
     persistent: true
 });
 
-// 当检测到新文件时
-watcher.on('add', path => {
-    console.log(`File ${path} has been added. It will be deleted after ${fileExpireTime / 1000} s.`);
-    
-    // 设置定时器来删除文件
-    setTimeout(() => {
-        fs.unlink(path, err => {
-            if (err) {
-                console.error(`Error deleting file ${path}:`, err);
-            } else {
-                console.log(`File ${path} deleted.`);
-            }
-        });
-    }, fileExpireTime);
+// 文件信息映射
+const fileMap = new Map();
+
+watcher.on('add', filePath => {
+    console.log(`File ${filePath} has been added.`);
+    fileMap.set(filePath, Date.now());
 });
+
+// 定期检查过期文件并删除
+setInterval(() => {
+    const currentTime = Date.now();
+    fileMap.forEach((addedTime, filePath) => {
+        if (currentTime - addedTime > fileExpireTime) {
+            fs.unlink(filePath, err => {
+                if (err) {
+                    console.error(`Error deleting file ${filePath}:`, err);
+                } else {
+                    console.log(`File ${filePath} deleted.`);
+                    fileMap.delete(filePath);
+                }
+            });
+        }
+    });
+}, 10 * 1000); // 每10秒检查一次
