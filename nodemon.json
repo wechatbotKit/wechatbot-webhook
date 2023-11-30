@@ -1,5 +1,5 @@
 {
-  "watch": ["src", "node_modules/wechaty-puppet-xp/dist/cjs/src/init-agent-script.js"],
+  "watch": ["src", "node_modules/wechaty-puppet-xp/dist/cjs/src/init-agent-script.js", "node_modules/wechaty-puppet-xp/dist/cjs/src/puppet-xp.js"],
   "ext": "js,json",
   "ignoreRoot": [".git"],
   "execMap": {
