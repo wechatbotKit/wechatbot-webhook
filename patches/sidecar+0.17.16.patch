@@ -9,9 +9,9 @@ index 9675785..0c7e886 100644
 -                session = await frida.attach(targetProcess);
 +                // session = await frida.attach(targetProcess);
 +                //TODO: 修改点1
-+                 const deviceManager = frida.getDeviceManager();
-++                const device = await deviceManager.addRemoteDevice('127.0.0.1:27042')
-++                session = await device.attach(targetProcess);
++                const deviceManager = frida.getDeviceManager();
++                const device = await deviceManager.addRemoteDevice('127.0.0.1:27042')
++                session = await device.attach(targetProcess);
                  config_js_1.log.silly('SidecarBody', '[ATTACH_SYMBOL]() frida.attach(%s) succeed: pid = %s', this.sidecarTarget.target, session.pid);
              }
              catch (e) {
