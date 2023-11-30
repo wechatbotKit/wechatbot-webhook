@@ -6,12 +6,8 @@
   "scripts": {
     "postinstall": "patch-package",
     "prestart": "node ./scripts/preStart",
-    "predebug": "node ./scripts/preStart",
-    "dev": "nodemon main",
-    "devWin": "export WECHATY_PUPPET=wechaty-puppet-xp &&nodemon main",
-    "start": "node main",
-    "startWin": "export WECHATY_PUPPET=wechaty-puppet-xp&&node main",
-    "debug": "node --inspect='0.0.0.0:9229' main"
+    "dev": "export WECHATY_PUPPET=wechaty-puppet-xp &&nodemon main",
+    "start": "export WECHATY_PUPPET=wechaty-puppet-xp&&node main"
   },
   "engines": {
     "node": ">=18"
@@ -38,6 +34,7 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.2",
+    "chokidar": "^3.5.3",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "file-box": "1.4.15",

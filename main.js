@@ -5,6 +5,7 @@ const wechatBotInit = require('./src/wechaty/init')
 const registerRoute = require('./src/route')
 const app = express()
 const bot = wechatBotInit()
+const { exec } = require('child_process');
 
 app.use(express.json())
 
@@ -15,20 +16,12 @@ app.listen(PORT, () => {
   // console.log(`service is running`);
 })
 
-// const frida = require('frida');
-
-// async function main() {
-//   const deviceManager = frida.getDeviceManager();
-//   const device = await deviceManager.addRemoteDevice('127.0.0.1:27042'); // 连接到 localhost 的 27042 端口
-
-//   // 列出所有进程
-//   const processes = await device.enumerateProcesses();
-//   for (const process of processes) {
-//     console.log(`PID: ${process.pid}, Name: ${process.name}`);
-
-//     if (process.name === 'WeChat.exe') {
-//       const session = await device.attach('wechat.exe'); // 附加到 wechat.exe
-//       console.log('Attached to wechat.exe');
-//     }
-//   }
-// }
+// 定时清理tmp文件夹任务
+exec('node scripts/scheduleClear', (error, stdout, stderr) => {
+  if (error) {
+      console.error(`执行定时任务出错: ${error}`);
+      return;
+  }
+  console.log(`定时任务输出: ${stdout}`);
+  console.error(`定时任务错误输出: ${stderr}`);
+});
