@@ -87,3 +87,4 @@ see https://github.com/danni-cool/docker-wechatbot-webhook/issues/11
 
 - https://github.com/wechaty/puppet-xp
 - https://github.com/sykuang/docker-wine-x11-novnc
+- https://github.com/ChisBread/wechat-box
