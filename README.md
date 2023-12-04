@@ -44,7 +44,7 @@ dannicool/docker-wechatbot-webhook:windows
 
 ### 4. 启动本项目
 
-在ssh中启动本项目（确保你已经登录windows微信）
+ssh 连接到docker容器（确保你已经登录windows微信）
 
 ```zsh
 cd /home/docker/node
