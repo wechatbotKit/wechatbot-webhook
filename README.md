@@ -17,12 +17,9 @@
 
 ![](https://cdn.jsdelivr.net/gh/danni-cool/danni-cool@cdn/image/wine-wecaht-screenshot.png)
 
-## Recognized Problem
-1. wine模拟图形界面 cpu 和 内存占用高 [Test Results of Running Wechat on WineHq](https://appdb.winehq.org/objectManager.php?sClass=version&iId=41375)
-
 ## Install
 
-### 拉取镜像
+### 1. 拉取镜像
 
 ```bash
 docker pull dannicool/docker-wechatbot-webhook:windows
@@ -30,18 +27,38 @@ docker pull dannicool/docker-wechatbot-webhook:windows
 docker run -d \
 --name wxBotWebhook \
 -p 8080:8080 \
+-p 3001:3001 \
 -p 8022:22 \
 dannicool/docker-wechatbot-webhook:windows
 ```
 
-### 连接 noVnc
+### 2. 连接 noVnc
 
 网页打开 http://localhost:8080
 
-### 安装程序
-如 screenshot 所示双击安装
+### 3. 安装程序
 
-### 关掉了如何启动
+在资源管理器进入 /home/docker 找到安装程序 如 screenshot 所示双击安装，扫码登录微信
+
+## Launch Project
+
+### 4. 启动本项目
+
+在ssh中启动本项目（确保你已经登录windows微信）
+
+```zsh
+cd /home/docker/node
+
+npm start
+```
+
+### 5. 调用webhook
+
+enjoy it. 使用 3001 端口暴露的 webhook http 服务
+
+## FAQ
+
+### 1. 关掉了如何启动
 
 1. 使用 ssh 服务启动
 
@@ -56,6 +73,11 @@ su docker
 wechat-start
 ```
 2. 在图形界面找到 My Computer > C:\Program Files\Tencent\WeChat\WeChat.exe 双击启动
+
+## Recognized Problem
+1. wine模拟图形界面 cpu 和 内存占用高 [Test Results of Running Wechat on WineHq](https://appdb.winehq.org/objectManager.php?sClass=version&iId=41375)
+
+2. 接收到图片、语音、视频信息等有几率会引起应用本身崩溃
 
 
 ## TODO
