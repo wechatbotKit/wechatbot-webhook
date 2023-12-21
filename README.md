@@ -81,7 +81,7 @@ wechat-start
 
 
 ## TODO
-see https://github.com/danni-cool/docker-wechatbot-webhook/issues/11
+see https://github.com/danni-cool/docker-wechatbot-webhook/issues/66
 
 ## Credit
 
