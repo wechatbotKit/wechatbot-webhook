@@ -30,4 +30,4 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: dannicool/docker-wechatbot-webhook:windows
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
