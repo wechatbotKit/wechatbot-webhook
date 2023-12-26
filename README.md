@@ -9,7 +9,7 @@
 
 ✅[Todo](https://github.com/danni-cool/docker-wechatbot-webhook/issues/11) & 💬[Discussion(Discord)](https://discord.gg/935xZTD9)
 
-该版本是windows分支，目前正在WIP，目标是替代web协议，打造一个稳定长期在线的机器人
+该版本是windows分支，目前正在WIP，目标是替代web协议，打造一个稳定长期在线的机器人, Windows 分支功能会落后于main，因为需要做大量兼容工作
 
 </div>
 
