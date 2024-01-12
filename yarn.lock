@@ -4768,10 +4768,10 @@ wechaty-puppet-wechat4u@^1.11.1:
     wechat4u "^0.7.12"
     xml2js "^0.4.23"
 
-wechaty-puppet-xp@^1.13.0:
-  version "1.13.1"
-  resolved "https://registry.yarnpkg.com/wechaty-puppet-xp/-/wechaty-puppet-xp-1.13.1.tgz#f7acb404012ebe7501589b6d46e275e11a15d269"
-  integrity sha512-qGqAyC2kdmiJihTQfZuytomNhDuAVp5n8ohZ7LfJ2h4GiX9GMzJr8Re+20bsD8qGaPWhepyymueguVBcxt5k/A==
+wechaty-puppet-xp@1.13.4:
+  version "1.13.4"
+  resolved "https://registry.yarnpkg.com/wechaty-puppet-xp/-/wechaty-puppet-xp-1.13.4.tgz#f2edd3d2592e4d1b72d8037ade70ef516114c0c7"
+  integrity sha512-gvl6xnTE7vxjOwb09Xs5IoNlMvO96ra/MnYkEsheiHBz7g9a4dQT9cZh45On0OyYAm8VvxBgdYNH88CyAnZb0Q==
   dependencies:
     cuid "^2.1.8"
     sidecar "^0.17.8"

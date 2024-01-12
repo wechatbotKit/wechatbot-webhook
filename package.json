@@ -44,7 +44,7 @@
     "multer": "^1.4.5-lts.1",
     "node-fetch-commonjs": "^3.3.2",
     "wechaty": "^1.20.2",
-    "wechaty-puppet-xp": "^1.13.0"
+    "wechaty-puppet-xp": "1.13.4"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^18.1.0",

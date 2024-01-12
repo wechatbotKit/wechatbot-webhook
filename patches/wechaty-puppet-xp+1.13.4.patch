@@ -1,12 +1,13 @@
 diff --git a/node_modules/wechaty-puppet-xp/dist/cjs/src/puppet-xp.js b/node_modules/wechaty-puppet-xp/dist/cjs/src/puppet-xp.js
-index 692e236..2b41086 100644
+index 5cf904f..9aae8bc 100644
 --- a/node_modules/wechaty-puppet-xp/dist/cjs/src/puppet-xp.js
 +++ b/node_modules/wechaty-puppet-xp/dist/cjs/src/puppet-xp.js
-@@ -764,7 +764,7 @@ class PuppetXp extends PUPPET.Puppet {
+@@ -788,7 +788,8 @@ class PuppetXp extends PUPPET.Puppet {
      }
      async messageSendFile(conversationId, file) {
          // PUPPET.throwUnsupportedError(conversationId, file)
 -        const filePath = path_1.default.resolve(file.name);
++        // const filePath = path_1.default.resolve(file.name);
 +        const filePath = path_1.default.resolve(`tmp/${file.name}`);
          wechaty_puppet_1.log.verbose('filePath===============', filePath);
          await file.toFile(filePath, true);
