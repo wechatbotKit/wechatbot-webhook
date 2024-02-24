@@ -11,7 +11,7 @@ ENV WINEPREFIX=/home/docker/.wine
 ENV HOME=/home/docker/
 ENV NOVNC_HOME=/usr/libexec/noVNCdim
 # 设置 Node.js 版本
-ENV NODE_VERSION 18.12.0
+ENV NODE_VERSION 18.20.0
 # 设置环境变量
 ENV PATH="/usr/local/lib/nodejs/node-v$NODE_VERSION-linux-x64/bin:${PATH}"
 
