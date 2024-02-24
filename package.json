@@ -17,7 +17,7 @@
     "start": "export WECHATY_PUPPET=wechaty-puppet-xp&&node main"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=18.14.1"
   },
   "author": {
     "name": "danni-cool",
