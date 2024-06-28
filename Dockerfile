@@ -93,10 +93,11 @@ RUN curl -fsSL https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
     && ln -s /usr/local/lib/nodejs/node-v$NODE_VERSION-linux-x64/bin/npx /usr/bin/npx
 
 # download wechat and fs
-RUN wget -O /home/docker/WeChatSetup-3.9.2.23.exe https://github.com/tom-snow/wechat-windows-versions/releases/download/v3.9.2.23/WeChatSetup-3.9.2.23.exe && \
-    wget -O /home/docker/fs.exe https://raw.githubusercontent.com/danni-cool/danni-cool/cdn/file/fs15.2.2x86.exe
+RUN wget -O /home/docker/WeChatSetup-3.9.2.23.exe https://github.com/tom-snow/wechat-windows-versions/releases/download/v3.9.2.23/WeChatSetup-3.9.2.23.exe
+# RUN wget -O /home/docker/WeChatSetup-3.9.2.23.exe https://github.com/tom-snow/wechat-windows-versions/releases/download/v3.9.2.23/WeChatSetup-3.9.2.23.exe \ 
+  # && wget -O /home/docker/fs.exe https://raw.githubusercontent.com/danni-cool/danni-cool/cdn/file/fs15.2.2x86.exe
 
-COPY linux/bin /bin
+# COPY linux/bin /bin
 
 COPY linux/.fluxbox /home/docker/.fluxbox
 
