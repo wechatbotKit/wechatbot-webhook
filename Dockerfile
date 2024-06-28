@@ -101,7 +101,7 @@ COPY linux/bin /bin
 COPY linux/.fluxbox /home/docker/.fluxbox
 
 # Add supervisor conf
-COPY linux/conf.d/* /etc/supervisor/conf.d/
+# COPY linux/conf.d/* /etc/supervisor/conf.d/
 
 # Add entrypoint.sh
 COPY linux/sh/entrypoint.sh /etc/entrypoint.sh
