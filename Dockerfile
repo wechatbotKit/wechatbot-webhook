@@ -102,7 +102,7 @@ RUN wget -O /home/docker/WeChatSetup-3.9.2.23.exe https://github.com/tom-snow/we
 COPY linux/.fluxbox /home/docker/.fluxbox
 
 # Add supervisor conf
-# COPY linux/conf.d/* /etc/supervisor/conf.d/
+COPY linux/conf.d/* /etc/supervisor/conf.d/
 
 # Add entrypoint.sh
 COPY linux/sh/entrypoint.sh /etc/entrypoint.sh
