@@ -107,6 +107,8 @@ COPY linux/conf.d/* /etc/supervisor/conf.d/
 # Add entrypoint.sh
 COPY linux/sh/entrypoint.sh /etc/entrypoint.sh
 
+RUN wineboot --init && Xvfb :0 -screen 0 1024x768x16 &
+
 ENTRYPOINT ["/bin/bash","/etc/entrypoint.sh"]
 
 # Expose Port
