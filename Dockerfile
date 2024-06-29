@@ -97,7 +97,7 @@ RUN wget -O /home/docker/WeChatSetup-3.9.2.23.exe https://github.com/tom-snow/we
 # RUN wget -O /home/docker/WeChatSetup-3.9.2.23.exe https://github.com/tom-snow/wechat-windows-versions/releases/download/v3.9.2.23/WeChatSetup-3.9.2.23.exe \ 
   # && wget -O /home/docker/fs.exe https://raw.githubusercontent.com/danni-cool/danni-cool/cdn/file/fs15.2.2x86.exe
 
-# COPY linux/bin /bin
+COPY linux/bin /bin
 
 COPY linux/.fluxbox /home/docker/.fluxbox
 
