@@ -85,7 +85,8 @@ COPY linux/conf.d/* /etc/supervisor/conf.d/
 COPY linux/sh/entrypoint.sh /etc/entrypoint.sh
 
 
-RUN chmod +x /etc/entrypoint.sh
+RUN chmod +x /home/docker
+
 
 ENTRYPOINT ["/bin/bash","/etc/entrypoint.sh"]
 
