@@ -84,6 +84,9 @@ COPY linux/.fluxbox /home/docker/.fluxbox
 COPY linux/conf.d/* /etc/supervisor/conf.d/
 COPY linux/sh/entrypoint.sh /etc/entrypoint.sh
 
+
+RUN chmod +x /etc/entrypoint.sh
+
 ENTRYPOINT ["/bin/bash","/etc/entrypoint.sh"]
 
 EXPOSE 8080 22 3001
