@@ -12,30 +12,22 @@ function check_vnc_pass {
     export X11_ARGS=""
   fi
 }
-
-# 切换回 root 用户来执行特权命令
-if [ "$(id -u)" -eq 0 ]; then
-  if [ ! -f /etc/ssh/ssh_host_rsa_key ]; then
-    # Generate ssh key
-    ssh-keygen -N '' -t rsa -f /etc/ssh/ssh_host_rsa_key
-    ssh-keygen -N '' -t dsa -f /etc/ssh/ssh_host_dsa_key
-    ssh-keygen -N '' -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key
-  fi
-
-  check_vnc_pass
-
-  if [[ -n $USER_PASSWORD ]]; then
-    echo "docker:$USER_PASSWORD" | chpasswd
-  fi
-  if [[ -n $PUID ]]; then
-    usermod -u "$PUID" docker
-  fi
-  if [[ -n $PGID ]]; then
-    groupmod -g "$PGID" docker
-  fi
-
-  # 切换到 docker 用户
-  exec su docker -c "/etc/entrypoint.sh"
+if [ ! -f /etc/ssh/ssh_host_rsa_key ]; then
+  # Generate ssh key
+  ssh-keygen -N '' -t rsa -f /etc/ssh/ssh_host_rsa_key
+  ssh-keygen -N '' -t dsa -f /etc/ssh/ssh_host_dsa_key
+  ssh-keygen -N '' -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key
 fi
 
+check_vnc_pass
+
+if [[ -n $USER_PASSWORD ]];then
+  echo "docker:$USER_PASSWORD" | chpasswd
+fi
+if [[ -n $PUID ]]; then
+  usermod -u "$PUID" docker
+fi
+if [[ -n $PGID ]]; then
+  groupmod -g "$PGID" docker
+fi
 /usr/bin/supervisord
