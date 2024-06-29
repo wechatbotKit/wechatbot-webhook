@@ -79,13 +79,14 @@ RUN curl -fsSL https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
 
 RUN wget -O /home/docker/WeChatSetup-3.9.2.23.exe https://github.com/tom-snow/wechat-windows-versions/releases/download/v3.9.2.23/WeChatSetup-3.9.2.23.exe
 
-# 切换到 docker 用户
-USER docker
-
 COPY linux/bin /bin
 COPY linux/.fluxbox /home/docker/.fluxbox
 COPY linux/conf.d/* /etc/supervisor/conf.d/
 COPY linux/sh/entrypoint.sh /etc/entrypoint.sh
+
+RUN chmod +x /etc/entrypoint.sh
+
+USER docker
 
 ENTRYPOINT ["/bin/bash","/etc/entrypoint.sh"]
 
