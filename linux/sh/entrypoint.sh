@@ -1,10 +1,9 @@
 #!/bin/bash
-
 function check_vnc_pass {
   if [[ -n $VNC_PASSWORD ]]; then
     local VNC_PASSWD_PATH="/home/docker/.vnc/passwd"
     rm -f $VNC_PASSWD_PATH
-    if [[ ! -d "/home/docker/.vnc" ]]; then mkdir -p /home/docker/.vnc; fi
+    if [[ ! -d "/home/docker/.vnc" ]]; then mkdir -p /home/docker/.vnc;fi
     x11vnc -storepasswd "$VNC_PASSWORD" "$VNC_PASSWD_PATH"
     export X11_ARGS="-rfbauth $VNC_PASSWD_PATH"
     chown docker $VNC_PASSWD_PATH
@@ -39,24 +38,4 @@ if [ "$(id -u)" -eq 0 ]; then
   exec su docker -c "/etc/entrypoint.sh"
 fi
 
-# 从这里开始的命令都以 docker 用户执行
-# Start Xvfb
-Xvfb :0 -screen 0 1024x768x16 &
-
-# Start PulseAudio
-pulseaudio --start
-
-# Start winbind service
-service winbind start
-
-# Initialize wine
-wineboot --init
-
-# Ensure DISPLAY is set correctly
-export DISPLAY=:0
-
-# Run winetricks after Xvfb has started
-winetricks corefonts vcrun6
-
-# Start supervisord
-exec /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
+/usr/bin/supervisord
