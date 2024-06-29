@@ -30,4 +30,21 @@ fi
 if [[ -n $PGID ]]; then
   groupmod -g "$PGID" docker
 fi
-/usr/bin/supervisord
+
+# Start Xvfb
+Xvfb :0 -screen 0 1024x768x16 &
+
+# Start PulseAudio
+pulseaudio --start
+
+# Start winbind service
+service winbind start
+
+# Initialize wine
+wineboot --init
+
+# Ensure DISPLAY is set correctly
+export DISPLAY=:0
+
+# Start supervisord
+exec /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
