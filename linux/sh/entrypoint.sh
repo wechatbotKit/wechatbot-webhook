@@ -46,5 +46,8 @@ wineboot --init
 # Ensure DISPLAY is set correctly
 export DISPLAY=:0
 
+# Run winetricks after Xvfb has started
+winetricks corefonts vcrun6
+
 # Start supervisord
 exec /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf

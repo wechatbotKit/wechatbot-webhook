@@ -52,7 +52,6 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends winehq-staging python3 && \
     curl -SL -k https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks -o /usr/local/bin/winetricks && \
     chmod a+x /usr/local/bin/winetricks && \
-    winetricks corefonts vcrun6 && \
     adduser --home /home/docker --disabled-password --shell /bin/bash --gecos "user for running application" --quiet docker && \
     echo "docker:1234" | chpasswd && \
     adduser docker sudo && \
