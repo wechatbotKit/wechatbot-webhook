@@ -53,8 +53,7 @@
     "node-fetch-commonjs": "^3.3.2",
     "patch-package": "^8.0.0",
     "qrcode-terminal": "^0.12.0",
-    "wechaty": "^1.20.2",
-    "wechaty-puppet-xp": "^1.13.8"
+    "wechaty": "^1.20.2"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^18.1.0",
@@ -69,8 +68,7 @@
     "husky": "^8.0.3",
     "prettier": "^3.1.1",
     "tsc-files": "^1.1.4",
-    "typescript": "^5.3.3",
-    "wechaty-puppet-mock": "^1.18.2"
+    "typescript": "^5.3.3"
   },
   "pnpm": {
     "patchedDependencies": {
